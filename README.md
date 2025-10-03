@@ -11,3 +11,7 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
+## 设置env-enc密码
+`npx env-enc set-pw`
+## 部署合约
+`npx hardhat deploy --network sepolia --reset`
