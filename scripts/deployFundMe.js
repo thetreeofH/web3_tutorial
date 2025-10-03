@@ -28,14 +28,16 @@ const { ethers } = require("hardhat")
     console.log(`First account: ${fitstAccount.address}`)
     console.log(`Second account: ${secondAccount.address}`)
 
-    const fundTx = await fundMe.fund({ value: ethers.parseEther("0.00005") })
+    const fundTx = await fundMe.fund({ value: ethers.parseEther("0.5") })
     await fundTx.wait(1)
-    console.log("Funded 0.00005 ETH")
+    console.log("Funded 0.5 ETH")
 
     const balance = await ethers.provider.getBalance(fundMe.target);
     console.log(`Balance of contract is ${balance}`)
 
-    // const fundTxWithSecondAccount = await fundMe.connect(secondAccount).fund({ value: ethers.parseEther("0.00005") })
+    const fundTxWithSecondAccount = await fundMe.connect(secondAccount).fund({ value: ethers.parseEther("0.5") })
+    await fundTxWithSecondAccount.wait(1)
+    console.log("Funded 0.5 ETH with second account")
 
     const firstAccountBalance = await fundMe.fundersToAmount(fitstAccount.address)
     console.log(`Balance of first account ${firstAccountBalance}`)

@@ -17,8 +17,10 @@ task("interact-fundme", "Interact with FundMe contract")
         const balance = await ethers.provider.getBalance(fundMe.target);
         console.log(`Balance of contract is ${balance}`)
 
-        // const fundTxWithSecondAccount = await fundMe.connect(secondAccount).fund({ value: ethers.parseEther("0.00005") })
 
+        const fundTxWithSecondAccount = await fundMe.connect(secondAccount).fund({ value: ethers.parseEther("0.5") })
+        await fundTxWithSecondAccount.wait(1)
+        console.log("Funded 0.5 ETH with second account")
         const firstAccountBalance = await fundMe.fundersToAmount(fitstAccount.address)
         console.log(`Balance of first account ${firstAccountBalance}`)
     })
